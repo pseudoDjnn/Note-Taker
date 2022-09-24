@@ -5,6 +5,7 @@ const fs = require("fs");
 
 // ROUTES FOR SERVER
 const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 // PORT SPCIFICITY
 const PORT = process.env.PORT || 3001;
