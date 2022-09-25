@@ -1,10 +1,19 @@
 // DEPENDENCIES
 const path = require("path");
-const router = require("express").Router();
+// const router = require("express").Router();
 
-// ROUTES
-router.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/notes.html"));
-});
+module.exports = function (router) {
+  // ROUTES
+  router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
 
-module.exports = router;
+  router.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/notes.html"));
+  });
+
+  // NO MATCH ROUTE
+  router.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+};

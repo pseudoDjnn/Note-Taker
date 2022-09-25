@@ -1,11 +1,5 @@
 // DEPENDENCIES
 const express = require("express");
-const path = require("path");
-const fs = require("fs");
-
-// ROUTES FOR SERVER
-const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
 
 // PORT SPCIFICITY
 const PORT = process.env.PORT || 3001;
@@ -15,14 +9,14 @@ const app = express();
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
-
 // DB JSON DATA
 app.use(express.json());
-
 // PUBLIC FOLDER DISPLAY
 app.use(express.static("public"));
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+
+// ROUTES FOR SERVER
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // CLI PORT
 app.listen(PORT, () => {
