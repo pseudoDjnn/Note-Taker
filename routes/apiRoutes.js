@@ -4,6 +4,7 @@ const path = require("path");
 
 const notes = require("../db/db.json");
 
+// CREATES NOTES TO ADD TO DB
 function createsNewNote(body, notesArray) {
   const notes = body;
   if (!Array.isArray(notesArray))
@@ -23,7 +24,21 @@ function createsNewNote(body, notesArray) {
   return notes;
 }
 
-// const { v4: uuidv4 } = require("uuid");
+// DELETES NOTES FROM DB FOLDER
+function deletesNote(id, notesArray) {
+  for (let i = 0; i < notesArray.length; i++) {
+    let notes = notesArray[i];
+
+    if (note.id == id) {
+      notesArray.splice(i, 1);
+      fs.writeFileSync(
+        path.join(__dirname, "../db/db.json"),
+        JSON.stringify(notesArray, null, 2)
+      );
+      break;
+    }
+  }
+}
 
 module.exports = function (router) {
   // GET REQUEST
