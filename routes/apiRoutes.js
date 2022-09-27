@@ -29,7 +29,7 @@ function deletesNote(id, notesArray) {
   for (let i = 0; i < notesArray.length; i++) {
     let notes = notesArray[i];
 
-    if (note.id == id) {
+    if (notes.id == id) {
       notesArray.splice(i, 1);
       fs.writeFileSync(
         path.join(__dirname, "../db/db.json"),
@@ -51,5 +51,11 @@ module.exports = function (router) {
     //  creates new note
     const newNote = createsNewNote(req.body, notes);
     res.json(newNote);
+  });
+
+  // DELETE REQUEST
+  router.delete("/api/notes/:id", (req, res) => {
+    deletesNote(req.params.id, notes);
+    res.json(true);
   });
 };
