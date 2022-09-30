@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const notes = require("../db/db.json");
 
@@ -13,7 +14,7 @@ function createsNewNote(body, notesArray) {
 
   if (notesArray.length === 0) notesArray.push(0);
 
-  body.id = notesArray[0];
+  body.id = notesArray[0] + uuidv4();
   notesArray[0]++;
 
   notesArray.push(notes);
